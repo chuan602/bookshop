@@ -12,7 +12,13 @@ import cn.itcast.servlet.BaseServlet;
 public class BookServlet extends BaseServlet {
 	private BookService bookService = new BookService();
 	
-	
+	public String sellSituation(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		request.setAttribute("bookList", bookService.sells());
+		System.out.println(bookService.sells());
+		return null;
+	}
 	/**
 	 * 根据全名称搜索,就当做是搜索了。。。  在首页那里找一个合适的位置放一下
 	 * @param request

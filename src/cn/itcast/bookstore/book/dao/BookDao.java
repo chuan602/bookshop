@@ -121,11 +121,25 @@ public class BookDao {
 		}
 		
 	}
-
+	/**
+	 * 模糊搜索，关键词查询
+	 * @param bookName
+	 * @return
+	 */
 	public List<Book> findByName(String bookName) {
 		try {
 			String sql = "select * from book where bname  like ? and del =false";
 			return qr.query(sql, new BeanListHandler<Book>(Book.class), bookName);
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	//查看图书的销量情况，图表统计
+	public List<Book> findSells() {
+		try {
+			String sql = " SELECT DISTINCT * FROM book WHERE bid IN(SELECT bid FROM orderitem WHERE oid IN(  SELECT DISTINCT oid FROM orders WHERE state = 4 ORDER BY COUNT))LIMIT 0,10";
+			return qr.query(sql, new BeanListHandler<Book>(Book.class));
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
