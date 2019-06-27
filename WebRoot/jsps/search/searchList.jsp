@@ -60,8 +60,8 @@ button.btn{
 </head>
 
 <body>
-	<form class="form-inline text-center" action="<c:url value='/SearchServlet?'/>">
-		<input type="hidden" name="method" value="search" />
+	<form class="form-inline text-center" action="<c:url value='/BookServlet'/>">
+		<input type="hidden" name="method" value="findBookByName" /> 
 		<input class="form-control search-input" placeholder="输入书名" type="text" name="keyword" />
 		<button type="submit" class="btn btn-primary">搜索</button>
 	</form>

@@ -71,7 +71,7 @@ li{
 			<a href="<c:url value='/jsps/search/searchList.jsp'/>">图书搜索</a>
 		</li>
 		<li class="sub-item">
-			<a href="<c:url value='/jsps/report/report.jsp'/>">销售情况</a>
+			<a href="<c:url value='/BookServlet?method=sellSituation'/>">销售情况</a>
 		</li>
 	</ul>
 </body>
