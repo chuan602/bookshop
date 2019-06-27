@@ -42,10 +42,10 @@
 			letter-spacing: 5px;
 			text-align: center;
 		}
-		.tool-bar {
+		.logout {
 			position: absolute;
 			bottom: 2px;
-			right: 10px;
+			right: 15px;
 			color: #FFF;
 		}
 	</style>
@@ -53,5 +53,6 @@
   
   <body>
 	<h1 class="title">维也纳金色书店后台管理</h1>
+	<a class="logout" href="<c:url value='/'/>" target="_parent">退出，并返回商城</a>
   </body>
 </html>

@@ -266,4 +266,15 @@ public class OrderServlet extends BaseServlet {
 		return "f:/jsps/order/desc.jsp";
 	}
 	
+	public String deleteOrders(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		String oid = req.getParameter("oid");
+		try{
+			orderService.deleteOrders(oid);
+		}catch(Exception e){
+			req.setAttribute("msg", e.getMessage());
+		}
+		return "/OrderServlet?method=myOrders";
+	}
+	
 }

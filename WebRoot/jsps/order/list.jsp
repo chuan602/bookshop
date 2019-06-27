@@ -76,6 +76,7 @@ table.table>tbody>tr>td{
 				<td colspan="2">成交时间：${order.ordertime }</td>
 				<td align="center">金额：<font color="red"><b>${order.total}</b></font></td>
 				<td align="center">
+					<a onclick="confirm('确认删除？')" href="<c:url value='/OrderServlet?method=deleteOrders&oid=${order.oid}'/>">删除</a>&nbsp;|&nbsp;
 					<c:choose>
 						<c:when test="${order.state eq 1 }">
 							<a href="<c:url value='/OrderServlet?method=load&oid=${order.oid}'/>">付款</a>

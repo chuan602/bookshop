@@ -11,9 +11,20 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+	<style type="text/css">
+		html, body {
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+		}
+		body{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
   </head>
   
-  <body style="margin: 0px;">
-    <img src="<c:url value='../../images/mycart.jpg'/>" width="100%" height="100%"/>
+  <body>
+    <img src="<c:url value='/images/mycart.jpg'/>" width="100%" height="100%"/>
   </body>
 </html>

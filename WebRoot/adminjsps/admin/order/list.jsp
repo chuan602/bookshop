@@ -67,83 +67,40 @@ table.table>tbody>tr>td{
 <body>
 	<h1 class="my-order">我的订单</h1>
 
-	<table class="table table-striped">
-		<tr>
-			<td colspan="2">
-				订单：8691b4150a0641e7a8729fd5e668820c
-			</td>
-			<td colspan="2">
-				成交时间：2013-06-04 15:56:53
-			</td>
-			<td>
-				金额：<font color="red"><b>126.4</b></font>
-			</td>
-			<td>
-				已收货（完成）
-			</td>
-		</tr>
-		<tr align="center">
-			<td width="10%"><img class="img"
-				src="<c:url value='/book_img/20385925-1_l.jpg'/>" /></td>
-			<td>书名：Struts2深入详解</td>
-			<td>单价：63.2元</td>
-			<td>作者：孙鑫</td>
-			<td>数量：2</td>
-			<td>小计：126.4元</td>
-		</tr>
-
-		<tr>
-			<td colspan="6">订单：153839427aa94f359fe51932d9f9e383
-				成交时间：2013-06-04 15:02:31 金额：<font color="red"><b>63.2</b></font> <a
-				href="javascript:alert('发货成功！')">发货</a>
-			</td>
-		</tr>
-		<tr align="center">
-			<td width="10%"><img class="img"
-				src="<c:url value='/book_img/20029394-1_l.jpg'/>" /></td>
-			<td>书名：精通Spring2.x</td>
-			<td>单价：63.2元</td>
-			<td>作者：陈华雄</td>
-			<td>数量：1</td>
-			<td>小计：63.2元</td>
-		</tr>
-
-		<tr>
-			<td colspan="6">订单：d1b85bfc71564b18bf7802582a9fd934 成交时间：2013-06-04 15:01:01
-				金额：<font color="red"><b>137.0</b></font> 已收货（完成）
-			</td>
-		</tr>
-		<tr align="center">
-			<td width="10%"><img class="img"
-				src="<c:url value='/book_img/20285763-1_l.jpg'/>" /></td>
-			<td>书名：Java核心技术卷1</td>
-			<td>单价：68.5元</td>
-			<td>作者：qdmmy6</td>
-			<td>数量：2</td>
-			<td>小计：137.0元</td>
-		</tr>
-
-		<tr>
-			<td colspan="6">订单：o1 成交时间：2013-06-04 12:47:41 金额：<font
-				color="red"><b>100.0</b></font> 未付款
-			</td>
-		</tr>
-		<tr align="center">
-			<td width="10%"><img class="img" src="<c:url value='/book_img/9317290-1_l.jpg'/>" /></td>
-			<td>书名：Java编程思想（第4版）</td>
-			<td>单价：75.6元</td>
-			<td>作者：qdmmy6</td>
-			<td>数量：2</td>
-			<td>小计：300.0元</td>
-		</tr>
-		<tr align="center">
-			<td width="10%"><img class="img" src="<c:url value='/book_img/20285763-1_l.jpg'/>" /></td>
-			<td>书名：Java核心技术卷1</td>
-			<td>单价：68.5元</td>
-			<td>作者：qdmmy6</td>
-			<td>数量：3</td>
-			<td>小计：500.0元</td>
-		</tr>
-	</table>
+	<c:forEach items="${orderList}" var = "order">
+		<table class="table table-striped">
+			<tr>
+				<td colspan="2">
+					订单编号：${order.oid }
+				</td>
+				<td colspan="2">
+					成交时间：${order.ordertime }
+				</td>
+				<td>
+					金额：<font color="red"><b>${order.total}</b></font>
+				</td>
+				<td>
+					<c:choose>
+						<c:when test="${order.state eq 1 }">等待买家付款</c:when>
+						<c:when test="${order.state eq 2 }"><a href="<c:url value='/AdminOrderServlet?method=sendOrders&oid=${order.oid}'/>">买家已付款，准备发货</a></c:when>
+						<c:when test="${order.state eq 3 }">等待买家收货</c:when> 
+						<c:when test="${order.state eq 4 }">买家确认收货，本订单结束</c:when>		
+					</c:choose>	
+				</td>	
+			</tr>
+			<c:forEach items="${order.orderItemList}" var ="orderItem">
+				<tr>
+					<td width="10%">
+						<img class="img" src="<c:url value='/${orderItem.book.image }'/>"/>
+					</td>
+					<td>书名：${orderItem.book.bname }</td>
+					<td>单价：${orderItem.book.price}元</td>
+					<td>作者：${orderItem.book.author}</td>
+					<td>数量：${orderItem.count}</td>
+					<td>小计：${orderItem.subtotal }元</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:forEach>
 </body>
 </html>

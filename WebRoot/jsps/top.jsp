@@ -48,7 +48,7 @@
 	.tool-bar {
 		position: absolute;
 		bottom: 2px;
-		right: 10px;
+		right: 15px;
 		color: #FFF;
 	}
 </style>
