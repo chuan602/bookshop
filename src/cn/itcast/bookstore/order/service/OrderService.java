@@ -99,4 +99,9 @@ public class OrderService {
 		// TODO Auto-generated method stub
 		return orderDao.findByState(state);
 	}
+	public Order findById(String oid) {
+		// TODO Auto-generated method stub
+		return orderDao.findById(oid);
+	}
+	
 }

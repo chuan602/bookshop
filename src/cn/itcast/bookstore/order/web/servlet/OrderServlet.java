@@ -26,6 +26,40 @@ import cn.itcast.servlet.BaseServlet;
 public class OrderServlet extends BaseServlet {
 	private OrderService orderService = new OrderService();
 	
+	/**
+	 * 这个是支付宝支付
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	 public String payOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		 String oid = request.getParameter("oid");
+		 System.out.println(oid);
+		 //String name = request.getParameter("name");
+	    // String tele = request.getParameter("tele");
+		// String address = request.getParameter("address");
+//		 request.setAttribute("username", name);
+//		 request.setAttribute("tele", tele);
+//		 request.setAttribute("address", address);
+		 Order order = orderService.findById(oid);
+		 System.out.println(order);
+		 request.setAttribute("order", order);
+		 request.setAttribute("oid", oid);
+		 orderService.zhiFu(oid);
+		 return "f:/jsps/pay/openAliPay.jsp";
+		 
+		
+		
+	  }
+	/**
+	 * 这个是假支付，实在不行就用这个
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public String pay(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String oid = request.getParameter("oid");
@@ -33,129 +67,8 @@ public class OrderServlet extends BaseServlet {
 		return "f:/jsps/order/final.jsp";
 
 	}
-	/**
-	 * 支付去银行
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public String zhiFu(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		Properties props = new Properties();
-		InputStream in = this.getClass().getClassLoader().getResourceAsStream("merchantInfo.properties");
-		props.load(in);
-		/*
-		 * 准备13参数
-		 */
-		String p0_Cmd ="Buy";
-		String p1_MerId = props.getProperty("p1_MerId");
-		String p2_Order = request.getParameter("oid");
-		String p3_Amt = "0.01";
-		String p4_Cur = "CNY";
-		String p5_Pid = "";
-		String p6_Pcat = ""; 
-		String p7_Pdesc = "";
-		String p8_Url = props.getProperty("p8_Url");
-		String p9_SAF = "";
-		String pa_MP ="";
-		String pd_FrpId = request.getParameter("pd_FrpId");
-		String pr_NeedResponse = "1";
-		System.out.println(pd_FrpId);
-		
-		/*
-		 * 计算hmac
-		 */
-		String keyValue = props.getProperty("keyValue");
-		String hmac = PaymentUtil.buildHmac(p0_Cmd, p1_MerId, p2_Order, p3_Amt, 
-				p4_Cur, p5_Pid, p6_Pcat, p7_Pdesc, p8_Url, p9_SAF, pa_MP,
-				pd_FrpId, pr_NeedResponse, keyValue);
-		/*
-		 * 连接易宝的网址和13+1个参数
-		 */
-		StringBuilder url = new StringBuilder(props.getProperty("url"));
-		url.append("?p0_Cmd=").append(p0_Cmd);
-		url.append("&p1_MerId=").append(p1_MerId);
-		url.append("&p2_Order=").append(p2_Order);
-		url.append("&p3_Amt=").append(p3_Amt);
-		url.append("&p4_Cur=").append(p4_Cur);
-		url.append("&p5_Pid=").append(p5_Pid);
-		url.append("&p6_Pcat=").append(p6_Pcat);
-		url.append("&p7_Pdesc=").append(p7_Pdesc);
-		url.append("&p8_Url=").append(p8_Url);
-		url.append("&p9_SAF=").append(p9_SAF);
-		url.append("&pa_MP=").append(pa_MP);
-		url.append("&pd_FrpId=").append(pd_FrpId);
-		url.append("&pr_NeedResponse=").append(pr_NeedResponse);
-		url.append("&hmac=").append(hmac);
-		/*
-		 * 重定向到易宝
-		 */
-		response.sendRedirect(url.toString());
-		return null;
-		
-	}
-	/**
-	 * 易宝回调方法
-	 * 必须要判断调用方法的是不是易宝
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public String back(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		/*
-		 * 1.获取11+1参数
-		 */
-		String p1_MerId = request.getParameter("p1_MerId");
-		String r0_Cmd = request.getParameter("r0_Cmd");
-		String r1_Code = request.getParameter("r1_Code");
-		String r2_TrxId = request.getParameter("r2_TrxId");
-		String r3_Amt = request.getParameter("r3_Amt");
-		String r4_Cur = request.getParameter("r4_Cur");
-		String r5_Pid = request.getParameter("r5_Pid");
-		String r6_Order = request.getParameter("r6_Order");
-		String r7_Uid = request.getParameter("r7_Uid");
-		String r8_MP = request.getParameter("r8_MP");
-		String r9_BType = request.getParameter("r9_BType");
 
-		String hmac = request.getParameter("hmac");
-		/*
-		 * 2.校验访问者是否是易宝
-		 */
-		Properties props = new Properties();
-		InputStream in = this.getClass().getClassLoader().getResourceAsStream("merchantInfo.properties");
-		props.load(in);
-		String keyValue = props.getProperty("keyValue");
-		boolean bool = PaymentUtil.verifyCallback(hmac, p1_MerId, r0_Cmd, 
-				r1_Code, r2_TrxId, r3_Amt, r4_Cur, r5_Pid, r6_Order, 
-				r7_Uid, r8_MP, r9_BType, keyValue);
-		
-		if(!bool){
-			request.setAttribute("msg", "校验失败,非法访问!");
-			return "f:/jsps/msg.jsp";
-		}
-		
-		/*
-		 * 3.获取订单状态,确定是否要修改订单状态,以及添加积分等其他业务操作
-		 */
-		orderService.zhiFu(r6_Order);
-		/*
-		 * 4.判断回调方式
-		 * 如果是点对点,需要回馈以success开头的串
-		 */
-		if(r9_BType.equals("2")){
-			response.getWriter().print("success");
-		}
-		/*
-		 * 5.保存成功信息.转发到msg.sjp
-		 */
-		request.setAttribute("msg", "支付成功,祝你生活愉快");
-		return "f:/jsps/msg.jsp";
-	}
+	
 	 /**
 	  * 确认收货
 	  * @param request
@@ -262,7 +175,7 @@ public class OrderServlet extends BaseServlet {
 		//调用orderService添加订单
 		orderService.add(order);
 		request.setAttribute("order",order);
-		
+		request.getSession().setAttribute("ORDER", order);
 		return "f:/jsps/order/desc.jsp";
 	}
 	

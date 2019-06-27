@@ -15,6 +15,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import cn.itcast.bookstore.book.domain.Book;
 import cn.itcast.bookstore.order.domain.Order;
 import cn.itcast.bookstore.order.domain.OrderItem;
+import cn.itcast.bookstore.user.domain.User;
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.jdbc.TxQueryRunner;
 
@@ -205,6 +206,17 @@ public class OrderDao {
 			throw new RuntimeException(e);
 		}
 	}
+	public Order findById(String oid) {
+		// TODO Auto-generated method stub
+		try {
+			String sql = "select * from orders where oid = ? ";
+			return qr.query(sql, new BeanHandler<Order>(Order.class), oid);
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 }
 
 
