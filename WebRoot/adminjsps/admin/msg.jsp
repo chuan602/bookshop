@@ -11,14 +11,20 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
+	<style type="text/css">
+		html, body{
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+		}
+		body {
+			background-image: url("<c:url value='/images/canton.jpg'/>");
+			background-size: 100% 100%;
+			background-position: center;
+			padding: 20px;
+		}
+	</style>
   </head>
-<style type="text/css">
-	body {background: rgb(254,238,189);}
-</style>
   <body>
 <h2>${msg }</h2>
 <ul>

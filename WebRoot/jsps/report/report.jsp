@@ -12,51 +12,44 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+<link rel="stylesheet" type="text/css" href="<c:url value='/bootstrap/css/bootstrap.min.css'/>">
 <style type="text/css">
-body {
-	font-size: 10pt;
-}
-
-.icon {
-	margin: 10px;
-	padding-left: 5px;
-	padding-right: 5px;
-	border: 1px solid #eee;
-	width: 160px;
-	height: 200px;
-	text-align: center;
-	float: left;
-}
-.img-box{
-	display: block;
-	height: 160px;
-	overflow: hidden;
-}
-.img-box img{
-	width: 100%;
-}
-.icon:hover img {
-	transform: scaleX(1.1) scaleY(1.1);
-	transform-origin: center center;
-	transition: all 0.5s 
-}
+	body{
+		margin: 0;
+		height:100%;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 20px;
+		background-image: url("<c:url value='/images/canton.jpg'/>");
+		background-size: 100% 100%;
+		background-position: center;
+	}
+	.title{
+		border-left: 5px solid orange;
+		letter-spacing: 5px;
+		font-size: 26px;
+		padding-left: 20px;
+		margin-top: 0;
+		margin-bottom: 20px;
+	}
 </style>
 </head>
 
 <body>
-	<c:forEach items="${bookList}" var="book">
-		<div class="icon">
-			<a class="img-box" href="<c:url value='/BookServlet?method=load&bid=${book.bid}'/>">
-				<img src="<c:url value='/${book.image}'/>" border="0" />
-			</a><br />
-			<a class="book-name" href="<c:url value='/BookServlet?method=load&bid=${book.bid}'/>">${book.bname}</a>
-		</div>
-	</c:forEach>
-
-
+	
+	<h2 class="title">销量榜</h2>
+	<table class="table table-striped">
+		<tr>
+			<th>#</th>
+			<th>图片</th>
+			<th>书名</th>
+			<th>价格</th>
+			<th>销量</th>
+		</tr>
+		<tr>
+			
+		</tr>
+	</table>
 </body>
 
 </html>

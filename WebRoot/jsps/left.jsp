@@ -68,7 +68,7 @@ li{
 			<a class="else">其他</a>
 		</li>
 		<li class="sub-item">
-			<a href="<c:url value='/jsps/search/searchList.jsp'/>">图书搜索</a>
+			<a href="<c:url value='/SearchServlet?method=search&keyword=""'/>">图书搜索</a>
 		</li>
 		<li class="sub-item">
 			<a href="<c:url value='/jsps/report/report.jsp'/>">销售情况</a>

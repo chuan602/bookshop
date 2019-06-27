@@ -49,23 +49,32 @@ button.btn{
 	margin-left: 10px;
 }
 .empty-warming{
-	display: none;
-	padding: 30px;
+	margin: 100px auto;
+	text-align: center;
 	color: #ccc;
 	font-size: 20px;
 	font-style: italic;
 	letter-spacing: 10px;
 }
+.title{
+		border-left: 5px solid orange;
+		letter-spacing: 5px;
+		font-size: 26px;
+		padding-left: 20px;
+		margin-top: 0;
+		margin-bottom: 20px;
+	}
 </style>
 </head>
 
 <body>
+	<h2 class="title">图书搜索</h2>
 	<form class="form-inline text-center" action="<c:url value='/SearchServlet?'/>">
 		<input type="hidden" name="method" value="search" />
 		<input class="form-control search-input" placeholder="输入书名" type="text" name="keyword" />
 		<button type="submit" class="btn btn-primary">搜索</button>
 	</form>
-	<c:if test="empty searchList"><p class="empty-warming">对不起，没有相关书箱</p></c:if>
+	<c:if test="${empty searchList}"><p class="empty-warming">对不起，没有相关书籍</p></c:if>
 	<c:forEach items="${searchList}" var="book">
 		<div class="icon">
 			<a class="img-box" href="<c:url value='/BookServlet?method=load&bid=${book.bid}'/>">
@@ -76,11 +85,5 @@ button.btn{
 	</c:forEach>
 
 </body>
-<script type="text/javascript">
-	var dom = document.getElementsByClassName('empty-warming')[0];
-	dom.onclick = function(){
-		dom.style.display = 'block';
-	}
-</script>
 </html>
 

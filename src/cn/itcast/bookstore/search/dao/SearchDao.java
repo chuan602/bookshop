@@ -19,7 +19,7 @@ public class SearchDao {
 	 */
 	public List<Book> search(String condition) {
 		try {
-			String sql = "select * from book where bname LIKE ?";
+			String sql = "select * from book where bname LIKE ? and del = 0";
 			return qr.query(sql, new BeanListHandler<Book>(Book.class),condition);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
