@@ -70,4 +70,9 @@ public class BookService {
 		// TODO Auto-generated method stub
 		return bookDao.findByName(bookName);
 	}
+	//图表统计的查询方法，销量好的图书
+	public List<Book> sells() {
+		
+		return  bookDao.findSells();
+	}
 }

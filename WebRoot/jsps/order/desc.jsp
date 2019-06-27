@@ -82,8 +82,7 @@
 	</table>
 	<br/>
 	<h1 class="order-owner-msg">收货人信息</h1>
-	<form method="post" action="<c:url value='/OrderServlet'/>" id="form" target="_parent">
-		<input type ="hidden" name="method"	value="zhiFu"/>
+	<form method="post" action="<c:url value='/OrderServlet?method=payOrder'/>" id="form" target="_parent">
 		<input type="hidden" name="oid" value ="${order.oid}"/>
 		<div class="form-group">
 			<label>收货人：</label>
@@ -98,8 +97,7 @@
 			<input class="form-control" type="text" name="address" size="50" placeholder="请输入收货地址"/>
 		</div>
 	</form>
-	<button class="btn btn-warning" id="pay" href="javascript:document.getElementById('form').submit();">付款</button>
-
+	<a class="btn btn-warning" id="pay" href="javascript:document.getElementById('form').submit();">付款</a>
   </body>
 </html>
 

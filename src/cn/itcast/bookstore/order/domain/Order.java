@@ -6,6 +6,9 @@ import java.util.List;
 import cn.itcast.bookstore.user.domain.User;
 
 public class Order {
+	//支付宝添加的
+	private String name ;
+	
 	private String oid;
 	private Date ordertime;
 	private double total;
@@ -54,6 +57,12 @@ public class Order {
 	}
 	public void setOrderItemList(List<OrderItem> orderItemList) {
 		this.orderItemList = orderItemList;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

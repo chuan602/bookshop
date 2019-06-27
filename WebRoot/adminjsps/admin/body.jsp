@@ -23,7 +23,6 @@
 		}
 	</style>
   </head>
-  
   <body>
     <img src="<c:url value='/images/mycart.jpg'/>" width="100%" height="100%"/>
   </body>

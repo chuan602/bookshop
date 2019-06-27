@@ -99,8 +99,15 @@ public class OrderService {
 		// TODO Auto-generated method stub
 		return orderDao.findByState(state);
 	}
+
 	//删除订单项
 	public void deleteOrders(String oid) {
 		orderDao.deleteOrders(oid);
 	}
+
+	public Order findById(String oid) {
+		// TODO Auto-generated method stub
+		return orderDao.findById(oid);
+	}
+
 }

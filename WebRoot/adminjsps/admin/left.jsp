@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="<c:url value='/menu/mymenu.js'/>"></script>
 	<link rel="stylesheet" href="<c:url value='/menu/mymenu.css'/>" type="text/css" media="all">
 <script language="javascript">
-var bar1 = new Q6MenuBar("bar1", "维也纳金色书店");
+var bar1 = new Q6MenuBar("bar1", "cpyl网络图书商城");
 function load() {
 	bar1.colorStyle = 2;
 	bar1.config.imgDir = "<c:url value='/menu/img/'/>";
@@ -41,7 +41,7 @@ function load() {
 
 </head>
 
-<body onload="load()" style="margin: 0px; padding="0"; background: rgb(254,238,189);">
+<body onload="load()" style="margin: 0px; background: rgb(254,238,189);">
 <div id="menu"></div>
 
 </body>
