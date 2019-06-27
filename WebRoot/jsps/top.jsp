@@ -13,9 +13,6 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
 <style type="text/css">
 	body {
 		margin: 0;
@@ -62,8 +59,9 @@
 	<div class="tool-bar">
 		<c:choose>
 				<c:when test="${empty sessionScope.session_user }">
-					<a href="<c:url value='/jsps/user/login.jsp'/>" target="_parent">登录</a> |&nbsp; 
-					<a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">注册</a>
+					<a href="<c:url value='/jsps/user/login.jsp'/>" target="_parent">登录</a>&nbsp;|&nbsp; 
+					<a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">注册</a>&nbsp;|&nbsp;
+					<a href="<c:url value='/adminjsps/login.jsp'/>" target="_parent">管理者登陆</a>
 				</c:when>
 			
 				<c:otherwise>

@@ -49,7 +49,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td width="265" style="padding:5px;" align="center" valign="top">
+		<td width="265" align="center" valign="top">
 			<iframe frameborder="0" width="120" src="<c:url value='/adminjsps/admin/left.jsp'/>" name="left"></iframe>
 		</td>
 		<td>
