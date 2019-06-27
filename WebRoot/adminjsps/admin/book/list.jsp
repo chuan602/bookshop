@@ -12,21 +12,43 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	<link rel="stylesheet" type="text/css" href="<c:url value='/bootstrap/css/bootstrap.min.css'/>">
 <style type="text/css">
+	html, body{
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		overflow: hidden;
+	}
 	body {
-		font-size: 10pt;
-		background: rgb(254,238,189);
+		background-image: url("<c:url value='/images/canton.jpg'/>");
+		background-size: 100% 100%;
+		background-position: center;
+		padding: 20px;
 	}
 	.icon {
-		margin:10px;
-		border: solid 2px gray;
+		margin: 10px;
+		padding-left: 5px;
+		padding-right: 5px;
+		border: 1px solid #eee;
 		width: 160px;
-		height: 190px;
+		height: 200px;
 		text-align: center;
 		float: left;
+	}
+	.img-box{
+		display: block;
+		height: 150px;
+		overflow: hidden;
+		margin-bottom: 5px;
+	}
+	.img-box img{
+		width: 100%;
+	}
+	.icon:hover img {
+		transform: scaleX(1.1) scaleY(1.1);
+		transform-origin: center center;
+		transition: all 0.5s 
 	}
 </style>
   </head>
@@ -35,8 +57,9 @@
   
   <c:forEach items ="${bookList }" var="book" >
    <div class="icon">
-    <a href="<c:url value='/admin/AdminBookServlet?method=load&bid=${book.bid }'/>"><img src="<c:url value='/${book.image }'/>" border="0"/></a>
-      <br/>
+    <a class="img-box" href="<c:url value='/admin/AdminBookServlet?method=load&bid=${book.bid }'/>">
+    	<img src="<c:url value='/${book.image }'/>" border="0"/>
+    </a>
    	<a href="<c:url value='/admin/AdminBookServlet?method=load&bid=${book.bid }'/>">${book.bname}</a>
   </div>
    </c:forEach>

@@ -28,9 +28,9 @@ body{
 }
 .cart-title{
 	border-left: 5px solid orange;
-	padding-left: 20px;
-	font-size: 26px;
 	letter-spacing: 5px;
+	font-size: 26px;
+	padding-left: 20px;
 }
 div {
 	margin: 20px;

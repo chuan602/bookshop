@@ -53,8 +53,5 @@
   
   <body>
 	<h1 class="title">维也纳金色书店后台管理</h1>
-	<div class="tool-bar">
-		<p style="font-size: 11pt;">管理员：张三</p>
-	</div>
   </body>
 </html>

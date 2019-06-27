@@ -11,20 +11,30 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	<link rel="stylesheet" type="text/css" href="<c:url value='/bootstrap/css/bootstrap.min.css'/>">
 <style type="text/css">
-	body {background: rgb(254,238,189);}
-	table {font-family: 宋体; font-size: 11pt; border-color: rgb(78,78,78);  width: 60%;}
-	#th {background: rgb(78,78,78);}
+	html, body{
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		overflow: hidden;
+	}
+	body {
+		background-image: url("<c:url value='/images/canton.jpg'/>");
+		background-size: 100% 100%;
+		background-position: center;
+	}
+	table {
+		font-family: 宋体; font-size: 11pt; border-color: rgb(78,78,78);  width: 60%;
+		margin: 20px;
+	}
 </style>
   </head>
   
   <body>
     <h2 style="text-align: center;">分类列表</h2>
-    <table align="center" border="1" cellpadding="0" cellspacing="0">
-    	<tr id="th" bordercolor="rgb(78,78,78)">
+    <table class="table table-striped">
+    	<tr>
     		<th>分类名称</th>
     		<th>操作</th>
     	</tr>

@@ -22,7 +22,7 @@ html, body {
 
 body {
 	margin: 0;
-	background-image: url("/images/bookshop.jpg");
+	background-image: url("../images/bookshop.jpg");
 	background-size: 100% 100%;
 	background-color: rgba(255, 255, 255, 0.5);
 }

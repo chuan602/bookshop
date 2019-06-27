@@ -12,9 +12,6 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
 <style type="text/css">
 body {
 	font-size: 10pt;
