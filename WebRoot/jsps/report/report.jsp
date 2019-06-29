@@ -57,7 +57,7 @@
 	
 	//获取数据
 	$.get('/bookstore/OrderServlet?method=sellSituation', function(res, status){
-		res = JSON.parse(res);
+		var res = JSON.parse(res);
 		var data = res.map(function(item){return item.bname});
 		console.log(data);
 		// 指定图表的配置项和数据
